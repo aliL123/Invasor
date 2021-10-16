@@ -57,6 +57,7 @@
     <Compile Include="Assets\Scripts\BulletController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\MouseRotation.cs" />
+    <Compile Include="Assets\Scripts\DetectCollisions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
