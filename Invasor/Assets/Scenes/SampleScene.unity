@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c8608ccd4e00541a7b76edc8b7fc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 45
   animator: {fileID: 1393497775}
   bulletSpawn: {fileID: 762791004}
   delay: 0
@@ -633,6 +633,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93acc49b5a9f4e84b89aa62e0282a2a3, type: 3}
+--- !u!1 &1422307166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8019549932213704436, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
+  m_PrefabInstance: {fileID: 2078301360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1422307172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422307166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.709174, y: 10.694735, z: 15.418392}
+  m_Center: {x: 1.6070427, y: 4.6060824, z: -1.1852152}
 --- !u!1001 &1786309264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,6 +736,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7172620110997997770, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172620110997997771, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
+      propertyPath: m_Mass
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 7206034831768767566, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -740,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7206034831768767566, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 125.87284
+      value: 127.01
       objectReference: {fileID: 0}
     - target: {fileID: 7206034831768767566, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -778,7 +804,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Research_center
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7172620110997997771, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
+    - {fileID: 7172620110997997770, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bbac49592ad123045aaf01b85acafd26, type: 3}
 --- !u!1001 &8216571261408565482
 PrefabInstance:
