@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public Animator animator;
     public GameObject bulletSpawn;
-    public float delay;
     public GameObject bullet;
+    public bool canShoot;
+    public int delay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerMovement();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot == true)
         {
-            shoot();
+            Shoot();
+            canShoot = false;
+            StartCoroutine(ShootDelay());
         }
     }
     void playerMovement()
@@ -43,8 +47,13 @@ public class PlayerController : MonoBehaviour
       
         
     }
-    void shoot()
+    void Shoot()
     {
         var instanceBullet = Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
+    }
+    IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        canShoot = true;
     }
 }
