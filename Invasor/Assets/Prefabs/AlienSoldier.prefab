@@ -607,12 +607,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3155776164951366612}
   - component: {fileID: 5650282196603269481}
-  - component: {fileID: 450316253915721985}
   - component: {fileID: 5491475305654365418}
   - component: {fileID: 6077561029883151496}
+  - component: {fileID: 2520520938398837371}
   m_Layer: 0
   m_Name: AlienSoldier
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -653,19 +653,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &450316253915721985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3483980948302079363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d337a4d2604dfc49a5d285c4d52cf2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!65 &5491475305654365418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -677,8 +664,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999976, y: 2.55925, z: 1.2794492}
-  m_Center: {x: 0, y: 0.77962637, z: -0.13972783}
+  m_Size: {x: 1.5477957, y: 2.8411484, z: 1.4884241}
+  m_Center: {x: -0.02026972, y: 0.9205777, z: -0.03523904}
 --- !u!54 &6077561029883151496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -691,10 +678,24 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2520520938398837371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483980948302079363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfedbb31bded656488065d8e1282fd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  animator: {fileID: 5650282196603269481}
 --- !u!1 &3526821964958690384
 GameObject:
   m_ObjectHideFlags: 0

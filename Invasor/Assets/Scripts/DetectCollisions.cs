@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    public Animator animator;
+    private GameObject enemyHit;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -19,12 +20,12 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Destroy(this.gameObject);
         Debug.Log("Checking  : " + other.gameObject.tag);
-        if(other.tag == "Bullet")
+        if(other.tag == "Enemy")
         {
-            animator.SetBool("HasDied", true);
-            Destroy(gameObject, 10);
-            Destroy(other.gameObject);
+            enemyHit = other.gameObject;
+            enemyHit.GetComponent<EnemyController>().health -= damage;
         }
         
     }

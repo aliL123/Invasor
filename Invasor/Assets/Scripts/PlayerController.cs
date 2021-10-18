@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public bool canShoot;
     public int delay;
+    public float currentHealth;
+    public float maxHealth;
+    public GameObject healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
             Shoot();
             canShoot = false;
             StartCoroutine(ShootDelay());
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            damageTaken();
         }
     }
     void playerMovement()
@@ -47,9 +54,14 @@ public class PlayerController : MonoBehaviour
       
         
     }
+    void damageTaken()
+    {
+        currentHealth = currentHealth - 30;
+            healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
+        }
     void Shoot()
     {
-        var instanceBullet = Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
+        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
     }
     IEnumerator ShootDelay()
     {
