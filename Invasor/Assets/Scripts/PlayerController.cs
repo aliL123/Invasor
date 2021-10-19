@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float currentHealth;
     public float maxHealth;
     public GameObject healthBar;
+    public float rayDistance;
+    private bool canMove;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMovement();
+        
         if (Input.GetMouseButtonDown(0) && canShoot == true)
         {
             Shoot();
@@ -35,22 +38,47 @@ public class PlayerController : MonoBehaviour
             damageTaken();
         }
     }
-    void playerMovement()
+    private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, fwd,out hit, rayDistance))
         {
-            transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-            animator.SetBool("isWalking", true);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * movementSpeed * Time.deltaTime);
-            animator.SetBool("isWalking", true);
+            Debug.Log(" Tag : " + hit.collider.tag);
+            if(hit.collider.tag != "Town")
+            {
+                canMove = false;
+            }
+            
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            canMove = true;
         }
+        playerMovement();
+    
+        }
+
+    void playerMovement()
+    {
+        if(canMove)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+                animator.SetBool("isWalking", true);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.back * movementSpeed * Time.deltaTime);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
+        }
+       // Debug.Log("CantMove!");
       
         
     }
