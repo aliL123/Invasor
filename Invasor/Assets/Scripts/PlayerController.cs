@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetMouseButtonDown(0) && canShoot == true)
+        if (Input.GetMouseButton(0) && canShoot == true)
         {
             Shoot();
             canShoot = false;
