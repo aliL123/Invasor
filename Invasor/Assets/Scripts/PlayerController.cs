@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour
     public GameObject healthBar;
     public float rayDistance;
     private bool canMove;
+    public AudioSource sound;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
         }
     void Shoot()
     {
+        sound.Play();
         Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
     }
     IEnumerator ShootDelay()
