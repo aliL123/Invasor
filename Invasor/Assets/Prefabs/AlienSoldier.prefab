@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 5491475305654365418}
   - component: {fileID: 6077561029883151496}
   - component: {fileID: 2520520938398837371}
+  - component: {fileID: 4219248722828318715}
   m_Layer: 0
   m_Name: AlienSoldier
   m_TagString: Enemy
@@ -696,6 +697,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   animator: {fileID: 5650282196603269481}
+  particles: {fileID: 8142776624367745201, guid: be16a2ead503d12418c1f228fcee2f7c, type: 3}
+  agent: {fileID: 0}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
+  walkPoint: {x: 0, y: 0, z: 0}
+  projectile: {fileID: 0}
+  timeBetweenAttacks: 3
+  walkPointRange: 10
+  sightRange: 6
+  attackRange: 4
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!195 &4219248722828318715
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483980948302079363}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 20
+  m_Acceleration: 3
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3526821964958690384
 GameObject:
   m_ObjectHideFlags: 0

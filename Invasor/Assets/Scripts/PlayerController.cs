@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Vector3 back = transform.TransformDirection(Vector3.back);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, fwd,out hit, rayDistance))
         {
@@ -52,6 +53,15 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
             }
             
+        }
+        else if (Physics.Raycast(transform.position, back, out hit, rayDistance+2))
+        {
+            Debug.Log(" Tag : " + hit.collider.tag);
+            if (hit.collider.tag != "Town")
+            {
+                canMove = false;
+            }
+
         }
         else
         {
