@@ -81,13 +81,14 @@ public class EnemyController : MonoBehaviour
                 agent.SetDestination(walkPoint);
             }
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
-            if (distanceToWalkPoint.magnitude < 1f)
+            if (distanceToWalkPoint.magnitude < 0.1f)
             {
+                walkPointSet = false;
                 changeAnim("isLooking", true);
                 changeAnim("isChasing", false);
                 changeAnim("isAttacking", false);
                 Debug.Log("At Destination");
-                walkPointSet = false;
+                
             }
         }
        
@@ -127,6 +128,7 @@ public class EnemyController : MonoBehaviour
             {
                 changeAnim("isChasing", false);
                 changeAnim("isAttacking", true);
+                changeAnim("isLooking", false);
                 AttackAction();
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
