@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
     //PatrolPoint
     public Vector3 walkPoint;
     bool walkPointSet;
-    public GameObject projectile;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public float walkPointRange;
@@ -42,14 +41,17 @@ public class EnemyController : MonoBehaviour
         
         if(!playerInSightRange && !playerInAttackRange)
         {
+            Debug.Log("IsPatroling");
             Patroling();
         }
         if (playerInSightRange && !playerInAttackRange)
         {
+            Debug.Log("IsChasing");
             Chase();
         }
         if (playerInSightRange && playerInAttackRange)
         {
+            Debug.Log("IsAttacking");
             Attack();
         }
 
