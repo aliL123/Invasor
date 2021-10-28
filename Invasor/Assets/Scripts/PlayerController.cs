@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = currentHealth - 30;
             healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
-        }
+       }
     void Shoot()
     {
         sound.Play();
