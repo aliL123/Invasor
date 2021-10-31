@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TimerScript : MonoBehaviour
+public class TimerScript2 : MonoBehaviour
 {
     public float timeRemaining = 180;
     public bool timerIsRunning = false;
@@ -53,7 +53,7 @@ public class TimerScript : MonoBehaviour
         Debug.Log("In Scene");
         timeRemaining = 0;
         timerIsRunning = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
 
 
     }
