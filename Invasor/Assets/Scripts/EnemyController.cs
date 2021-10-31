@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class EnemyController : MonoBehaviour
 {
     public float health;
+    private int maxHealth;
     public Animator animator;
     public GameObject particles;
-    private bool processing = false;
+    [HideInInspector]public bool isDead = false;
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -20,9 +23,13 @@ public class EnemyController : MonoBehaviour
     public float walkPointRange;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-
+    private Rigidbody rb;
+    public GameObject manager;
+    private bool addedScore = false;
     private void Awake()
     {
+        
+        rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -30,7 +37,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        this.maxHealth = (int)health;
     }
 
     // Update is called once per frame
@@ -38,29 +45,42 @@ public class EnemyController : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        
-        if(!playerInSightRange && !playerInAttackRange)
+        if(!isDead)
         {
-            Debug.Log("IsPatroling");
-            Patroling();
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+              //  Debug.Log("IsPatroling");
+                Patroling();
+            }
+            if (playerInSightRange && !playerInAttackRange)
+            {
+              //  Debug.Log("IsChasing");
+                Chase();
+            }
+            if (playerInSightRange && playerInAttackRange)
+            {
+             //   Debug.Log("IsAttacking");
+                Attack();
+            }
         }
-        if (playerInSightRange && !playerInAttackRange)
+        else
         {
-            Debug.Log("IsChasing");
-            Chase();
+            Debug.Log("Is Dead : " + isDead);
         }
-        if (playerInSightRange && playerInAttackRange)
-        {
-            Debug.Log("IsAttacking");
-            Attack();
-        }
+       
 
-        if (health == 0)
+        if (health <= 0)
         {
-           
+            if(!addedScore)
+            {
+                manager.GetComponent<ScoreScript>().score += (maxHealth * 10);
+                addedScore = true;
+            }
+            
             StartCoroutine(Die());
             
         }
+        
     }
     private void changeAnim(string state, bool tOrF)
     {
@@ -68,8 +88,8 @@ public class EnemyController : MonoBehaviour
     }
     private void Patroling()
     {
-        if(!processing)
-        {
+
+       
             if (!walkPointSet)
             {
                 SearchWalkPoint();
@@ -92,11 +112,7 @@ public class EnemyController : MonoBehaviour
                 Debug.Log("At Destination");
                 
             }
-        }
-       
-
-        
-        }
+    }
     private void SearchWalkPoint()
         {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -111,19 +127,17 @@ public class EnemyController : MonoBehaviour
     
     private void Chase()
     {
-        if(!processing)
-        {
+       
             changeAnim("isLooking", false);
             changeAnim("isChasing", true);
             changeAnim("isAttacking", false);
             agent.SetDestination(player.position);
-        }
-        
+     
+
     }
     private void Attack()
     {
-        if(!processing)
-        {
+       
             agent.SetDestination(transform.position);
             transform.LookAt(player);
             if (!alreadyAttacked)
@@ -135,8 +149,8 @@ public class EnemyController : MonoBehaviour
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
-        }
         
+
     }
     private void AttackAction()
     {
@@ -149,19 +163,25 @@ public class EnemyController : MonoBehaviour
     IEnumerator Die()
     {
        
-        if (!processing)
+        if (!isDead)
         {
-            processing = true;
+            isDead = true;
+            attackRange = 0;
+            sightRange = 0;
+            this.GetComponent<NavMeshAgent>().enabled = false;
             changeAnim("isAttacking", false);
             changeAnim("isChasing", false);
             changeAnim("isLooking", false);
             changeAnim("HasDied", true);
             particles = Instantiate(particles, transform.position, transform.rotation);
-            yield return new WaitForSeconds(2);
+            
+           
+            yield return new WaitForSeconds(3);
             particles.GetComponent<ParticleSystem>().Stop();
             this.enabled = false;
             Destroy(this.gameObject);
-            processing = false;
+            
+           
         }
         
     }

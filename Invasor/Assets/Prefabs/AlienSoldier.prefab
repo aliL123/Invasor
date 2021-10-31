@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 6077561029883151496}
   - component: {fileID: 2520520938398837371}
   - component: {fileID: 4219248722828318715}
+  - component: {fileID: 1071827031}
   m_Layer: 0
   m_Name: AlienSoldier
   m_TagString: Enemy
@@ -682,7 +683,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &2520520938398837371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +699,8 @@ MonoBehaviour:
   health: 3
   animator: {fileID: 5650282196603269481}
   particles: {fileID: 8142776624367745201, guid: be16a2ead503d12418c1f228fcee2f7c, type: 3}
-  agent: {fileID: 0}
+  isDead: 0
+  agent: {fileID: 4219248722828318715}
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -707,13 +709,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   walkPoint: {x: 0, y: 0, z: 0}
-  projectile: {fileID: 0}
   timeBetweenAttacks: 3
   walkPointRange: 10
-  sightRange: 6
+  sightRange: 30
   attackRange: 4
   playerInSightRange: 0
   playerInAttackRange: 0
+  manager: {fileID: 0}
 --- !u!195 &4219248722828318715
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -736,6 +738,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1071827031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483980948302079363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3526821964958690384
 GameObject:
   m_ObjectHideFlags: 0
