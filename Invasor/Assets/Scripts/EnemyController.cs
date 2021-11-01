@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour
     public GameObject particles;
     [HideInInspector]public bool isDead = false;
     public NavMeshAgent agent;
-    public Transform player;
+    private Transform player;
+    public GameObject playerObject;
     public LayerMask whatIsGround, whatIsPlayer;
     //PatrolPoint
     public Vector3 walkPoint;
@@ -143,7 +144,6 @@ public class EnemyController : MonoBehaviour
             if (!alreadyAttacked)
             {
                 changeAnim("isChasing", false);
-                changeAnim("isAttacking", true);
                 changeAnim("isLooking", false);
                 AttackAction();
                 alreadyAttacked = true;
@@ -156,6 +156,7 @@ public class EnemyController : MonoBehaviour
     {
         changeAnim("isAttacking", true);
     }
+   
     private void ResetAttack()
     {
         alreadyAttacked = false;
@@ -174,8 +175,8 @@ public class EnemyController : MonoBehaviour
             changeAnim("isLooking", false);
             changeAnim("HasDied", true);
             particles = Instantiate(particles, transform.position, transform.rotation);
-            
-           
+
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
             yield return new WaitForSeconds(3);
             particles.GetComponent<ParticleSystem>().Stop();
             this.enabled = false;

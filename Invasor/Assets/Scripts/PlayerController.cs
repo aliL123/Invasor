@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletSpawn;
     public GameObject bullet;
     public bool canShoot;
-    public int delay;
+    public float delay;
     public float currentHealth;
     public float maxHealth;
     public GameObject healthBar;
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         sound.Play();
-        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
+  
     }
     IEnumerator ShootDelay()
     {

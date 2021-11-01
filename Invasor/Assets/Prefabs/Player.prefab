@@ -806,8 +806,12 @@ MonoBehaviour:
   bulletSpawn: {fileID: 762791004}
   bullet: {fileID: 2673678652233984535, guid: 56b8565733840dc46bead2b2f9b87b20, type: 3}
   canShoot: 1
-  delay: 1
-  health: 100
+  delay: 0.05
+  currentHealth: 0
+  maxHealth: 0
+  healthBar: {fileID: 0}
+  rayDistance: 0
+  sound: {fileID: 0}
 --- !u!1 &8216571260553907785
 GameObject:
   m_ObjectHideFlags: 0

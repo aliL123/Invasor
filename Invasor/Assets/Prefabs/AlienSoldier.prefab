@@ -703,7 +703,7 @@ MonoBehaviour:
   particles: {fileID: 8142776624367745201, guid: be16a2ead503d12418c1f228fcee2f7c, type: 3}
   isDead: 0
   agent: {fileID: 4219248722828318715}
-  player: {fileID: 0}
+  playerObject: {fileID: 8216571260553907783, guid: 4ff9d2b7283b0ef419c3410d04419228, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -717,7 +717,7 @@ MonoBehaviour:
   attackRange: 4
   playerInSightRange: 0
   playerInAttackRange: 0
-  manager: {fileID: 0}
+  manager: {fileID: 5613346519951823162, guid: 4eef301dd7823c3439add01928d0a616, type: 3}
 --- !u!195 &4219248722828318715
 NavMeshAgent:
   m_ObjectHideFlags: 0
