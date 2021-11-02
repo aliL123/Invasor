@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float rayDistance;
     private bool canMove;
     public AudioSource sound;
+    public GameObject panel;
+    public GameObject manager;
 
 
     // Start is called before the first frame update
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         sound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -39,6 +44,12 @@ public class PlayerController : MonoBehaviour
         {
             damageTaken();
         }
+        if(currentHealth <=0 )
+        {
+            StartCoroutine(Die());
+        }
+        Debug.Log("Current Health is : " + currentHealth);
+
     }
     private void FixedUpdate()
     {
@@ -102,11 +113,26 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         sound.Play();
-  
+        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
+
     }
     IEnumerator ShootDelay()
     {
         yield return new WaitForSeconds(delay);
         canShoot = true;
+    }
+
+    IEnumerator Die()
+    {
+      
+        
+            Debug.Log("isDead");
+        manager.GetComponent<ScoreScript>().score = -1;
+        panel.SetActive(true);
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(5);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        
     }
 }

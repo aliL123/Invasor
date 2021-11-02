@@ -16,7 +16,15 @@ public class FinalScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.SetText("Final Score : " + manager.GetComponent<ScoreScript>().score);
+        if(manager.GetComponent<ScoreScript>().score == -1)
+        {
+            scoreText.SetText("L Score");
+        }
+        else
+        {
+            scoreText.SetText("Final Score : " + manager.GetComponent<ScoreScript>().score);
+        }
+        
          
     }
 }
