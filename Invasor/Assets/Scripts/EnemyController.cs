@@ -60,13 +60,14 @@ public class EnemyController : MonoBehaviour
             }
             if (playerInSightRange && playerInAttackRange)
             {
-             //   Debug.Log("IsAttacking");
+               
                 Attack();
+                Invoke("AttackAction", 5f);
             }
         }
         else
         {
-            Debug.Log("Is Dead : " + isDead);
+           // Debug.Log("Is Dead : " + isDead);
         }
        
 
@@ -100,7 +101,7 @@ public class EnemyController : MonoBehaviour
                 changeAnim("isLooking", false);
                 changeAnim("isChasing", false);
                 changeAnim("isAttacking", false);
-                Debug.Log("Going to destination");
+               // Debug.Log("Going to destination");
                 agent.SetDestination(walkPoint);
             }
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -110,7 +111,7 @@ public class EnemyController : MonoBehaviour
                 changeAnim("isLooking", true);
                 changeAnim("isChasing", false);
                 changeAnim("isAttacking", false);
-                Debug.Log("At Destination");
+               // Debug.Log("At Destination");
                 
             }
     }
@@ -143,8 +144,9 @@ public class EnemyController : MonoBehaviour
             transform.LookAt(player);
             if (!alreadyAttacked)
             {
-                changeAnim("isChasing", false);
-                changeAnim("isLooking", false);
+            changeAnim("isChasing", false);
+            changeAnim("isLooking", false);
+            Debug.Log("Is attacking soon");
                 AttackAction();
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -155,6 +157,12 @@ public class EnemyController : MonoBehaviour
     private void AttackAction()
     {
         changeAnim("isAttacking", true);
+        Debug.Log("Animation is done : " + !this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"));
+        if (!this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"))
+        {
+            player.GetComponent<PlayerController>().damageTaken();
+        }
+        
     }
    
     private void ResetAttack()

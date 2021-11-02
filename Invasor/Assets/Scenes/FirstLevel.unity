@@ -46772,6 +46772,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1538182427}
     - target: {fileID: 1393497779, guid: 4ff9d2b7283b0ef419c3410d04419228, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 965684863}
+    - target: {fileID: 1393497779, guid: 4ff9d2b7283b0ef419c3410d04419228, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1265717718}
