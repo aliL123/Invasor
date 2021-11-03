@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -21,7 +20,7 @@ public class BulletController : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         distance += 1 * Time.deltaTime;
 
-        if(distance >= 5)
+        if(distance >= 0.25)
         {
             Destroy(this.gameObject);
         }
