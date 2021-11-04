@@ -22,16 +22,16 @@ public class RatingScript : MonoBehaviour
     }
     void GiveRating(float score)
     {
-        if(score == -1)
+        if (score == -1)
         {
             ratingText.SetText("L, YOU DIED");
         }
-        else if(score == 0)
+        else if (score == 0)
         {
             ratingText.SetText("Rating : Really,so trash.");
 
         }
-        else if(score > 0 && score <= 100 && score < 250)
+        else if (score > 0 && score <= 100 && score < 250)
         {
             ratingText.SetText("Rating : Eh, not bad");
         }

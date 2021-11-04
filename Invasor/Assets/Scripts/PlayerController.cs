@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetMouseButton(0) && canShoot == true)
         {
             Shoot();
@@ -44,11 +44,11 @@ public class PlayerController : MonoBehaviour
         {
             damageTaken();
         }
-        if(currentHealth <=0 )
+        if (currentHealth <= 0)
         {
             StartCoroutine(Die());
         }
-        Debug.Log("Current Health is : " + currentHealth);
+       // Debug.Log("Current Health is : " + currentHealth);
 
     }
     private void FixedUpdate()
@@ -56,16 +56,16 @@ public class PlayerController : MonoBehaviour
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         Vector3 back = transform.TransformDirection(Vector3.back);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, fwd,out hit, rayDistance))
+        if (Physics.Raycast(transform.position, fwd, out hit, rayDistance))
         {
             Debug.Log(" Tag : " + hit.collider.tag);
-            if(hit.collider.tag != "Town")
+            if (hit.collider.tag != "Town")
             {
                 canMove = false;
             }
-            
+
         }
-        else if (Physics.Raycast(transform.position, back, out hit, rayDistance+2))
+        else if (Physics.Raycast(transform.position, back, out hit, rayDistance + 2))
         {
             Debug.Log(" Tag : " + hit.collider.tag);
             if (hit.collider.tag != "Town")
@@ -79,12 +79,12 @@ public class PlayerController : MonoBehaviour
             canMove = true;
         }
         playerMovement();
-    
-        }
+
+    }
 
     void playerMovement()
     {
-        if(canMove)
+        if (canMove)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -101,15 +101,15 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isWalking", false);
             }
         }
-       // Debug.Log("CantMove!");
-      
-        
+        // Debug.Log("CantMove!");
+
+
     }
     public void damageTaken()
     {
         currentHealth = currentHealth - 30;
-            healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
-       }
+        healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
+    }
     void Shoot()
     {
         sound.Play();
@@ -124,15 +124,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Die()
     {
-      
-        
-            Debug.Log("isDead");
+        Debug.Log("isDead");
         manager.GetComponent<ScoreScript>().score = -1;
         panel.SetActive(true);
-            Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(5);
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(5);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
     }
 }

@@ -10,9 +10,12 @@ public class TimerScript : MonoBehaviour
     public bool timerIsRunning = false;
     public Text timeText;
     public GameObject panel;
+    public bool allEnemiesDead;
+    public List<GameObject> enemies;
 
     private void Start()
     {
+        
         panel.SetActive(false);
         // Starts the timer automatically
         timerIsRunning = true;
@@ -27,7 +30,7 @@ public class TimerScript : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-            else
+            else if (timeRemaining <= 0 || allEnemiesDead)
             {
                 StartCoroutine(ChangeLevel());
             }
@@ -57,4 +60,4 @@ public class TimerScript : MonoBehaviour
 
 
     }
-    }
+}
