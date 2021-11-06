@@ -107,8 +107,8 @@ public class PlayerController : MonoBehaviour
     }
     public void damageTaken()
     {
-        currentHealth = currentHealth - 30;
-            healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
+        currentHealth = currentHealth - currentHealth;
+        healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
        }
     void Shoot()
     {

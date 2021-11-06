@@ -50,12 +50,15 @@ public class EnemyController : MonoBehaviour
         {
             if (!playerInSightRange && !playerInAttackRange)
             {
-              //  Debug.Log("IsPatroling");
+                changeAnim("isChasing", false);
+                changeAnim("isAttacking", false);
+                Debug.Log("IsPatroling");
                 Patroling();
             }
             if (playerInSightRange && !playerInAttackRange)
             {
-              //  Debug.Log("IsChasing");
+                changeAnim("isAttacking", false);
+                Debug.Log("IsChasing");
                 Chase();
             }
             if (playerInSightRange && playerInAttackRange)
@@ -98,19 +101,13 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                changeAnim("isLooking", false);
-                changeAnim("isChasing", false);
-                changeAnim("isAttacking", false);
-               // Debug.Log("Going to destination");
                 agent.SetDestination(walkPoint);
             }
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
-            if (distanceToWalkPoint.magnitude < 0.1f)
+            if (distanceToWalkPoint.magnitude < 0.23f)
             {
                 walkPointSet = false;
                 changeAnim("isLooking", true);
-                changeAnim("isChasing", false);
-                changeAnim("isAttacking", false);
                // Debug.Log("At Destination");
                 
             }
@@ -142,7 +139,8 @@ public class EnemyController : MonoBehaviour
        
             agent.SetDestination(transform.position);
             transform.LookAt(player);
-            if (!alreadyAttacked)
+            changeAnim("isChasing", false);
+        if (!alreadyAttacked)
             {
             changeAnim("isChasing", false);
             changeAnim("isLooking", false);

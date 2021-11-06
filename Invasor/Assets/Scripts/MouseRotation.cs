@@ -5,7 +5,6 @@ using UnityEngine;
 public class MouseRotation : MonoBehaviour
 {
     
-    public GameObject camera;
 
     // Start is called before the first frame update
     void Start()
