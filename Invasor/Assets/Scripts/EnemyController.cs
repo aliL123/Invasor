@@ -156,7 +156,7 @@ public class EnemyController : MonoBehaviour
     {
         changeAnim("isAttacking", true);
         Debug.Log("Animation is done : " + !this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"));
-        if (!this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"))
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"))
         {
             player.GetComponent<PlayerController>().damageTaken();
         }
