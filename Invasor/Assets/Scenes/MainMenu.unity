@@ -911,8 +911,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "You are a solider who needs to destroy all the aliens infesting the village.
     Kill them all before the time limit to get the maximum amount of points. Watch
-    out, they are slow but deadly.\n\n\n\nW to move forward, S to move backwards.
-    Use the mouse to rotate.  \nHold the mouse button to shoot."
+    out, one touch and they kill you. They are slow but deadly.\n\n\n\nW to move
+    forward, S to move backwards. Use the mouse to rotate.  \nHold the mouse button
+    to shoot."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
