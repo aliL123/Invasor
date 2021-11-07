@@ -7,7 +7,6 @@ public class FinalScoreScript : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public GameObject manager;
-    // Start is called before the first frame update
     void Start()
     {
         scoreText.SetText(" ");
@@ -16,7 +15,7 @@ public class FinalScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(manager.GetComponent<ScoreScript>().score == -1)
+        if (manager.GetComponent<ScoreScript>().score == -1) // Player died score
         {
             scoreText.SetText("L Score");
         }
@@ -24,7 +23,7 @@ public class FinalScoreScript : MonoBehaviour
         {
             scoreText.SetText("Final Score : " + manager.GetComponent<ScoreScript>().score);
         }
-        
-         
+
+
     }
 }

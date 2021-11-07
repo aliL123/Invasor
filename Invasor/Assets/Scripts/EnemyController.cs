@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     private int maxHealth;
     public Animator animator;
     public GameObject particles;
-    [HideInInspector] public bool isDead = false;
+    private bool isDead = false;
     public NavMeshAgent agent;
     private Transform player;
     public GameObject playerObject;
@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rb;
     public GameObject manager;
     private bool addedScore = false;
-    
+
     private void Awake()
     {
 
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         this.maxHealth = (int)health;
     }
 
@@ -50,32 +50,27 @@ public class EnemyController : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         if (!isDead)
         {
-            if (!playerInSightRange && !playerInAttackRange)
+            if (!playerInSightRange && !playerInAttackRange)  // can't see player
             {
-                changeAnim("isChasing", false);
-                changeAnim("isAttacking", false);
-                //Debug.Log("IsPatroling");
+                ChangeAnim("isChasing", false);
+                ChangeAnim("isAttacking", false);
+
                 Patroling();
             }
             if (playerInSightRange && !playerInAttackRange)
             {
-                changeAnim("isAttacking", false);
-                //Debug.Log("IsChasing");
+                agent.isStopped = false;
+                ChangeAnim("isAttacking", false);
+
                 Chase();
             }
             if (playerInSightRange && playerInAttackRange)
             {
-
+                agent.isStopped = false;
                 Attack();
                 Invoke("AttackAction", 5f);
             }
         }
-        else
-        {
-            // Debug.Log("Is Dead : " + isDead);
-        }
-
-
         if (health <= 0)
         {
             if (!addedScore)
@@ -89,7 +84,7 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-    private void changeAnim(string state, bool tOrF)
+    private void ChangeAnim(string state, bool tOrF)
     {
         animator.SetBool(state, tOrF);
     }
@@ -109,8 +104,9 @@ public class EnemyController : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 0.23f)
         {
             walkPointSet = false;
-            changeAnim("isLooking", true);
-            // Debug.Log("At Destination");
+            agent.isStopped = true;
+            ChangeAnim("isLooking", true);
+
 
         }
     }
@@ -129,9 +125,9 @@ public class EnemyController : MonoBehaviour
     private void Chase()
     {
 
-        changeAnim("isLooking", false);
-        changeAnim("isChasing", true);
-        changeAnim("isAttacking", false);
+        ChangeAnim("isLooking", false);
+        ChangeAnim("isChasing", true);
+        ChangeAnim("isAttacking", false);
         agent.SetDestination(player.position);
 
 
@@ -141,12 +137,11 @@ public class EnemyController : MonoBehaviour
 
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-        changeAnim("isChasing", false);
+        ChangeAnim("isChasing", false);
         if (!alreadyAttacked)
         {
-            changeAnim("isChasing", false);
-            changeAnim("isLooking", false);
-            Debug.Log("Is attacking soon");
+            ChangeAnim("isChasing", false);
+            ChangeAnim("isLooking", false);
             AttackAction();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -156,33 +151,35 @@ public class EnemyController : MonoBehaviour
     }
     private void AttackAction()
     {
-        changeAnim("isAttacking", true);
-        Debug.Log("Animation is done : " + !this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"));
+        ChangeAnim("isAttacking", true);
+
         if (!this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"))
         {
-            player.GetComponent<PlayerController>().damageTaken();
+            player.GetComponent<PlayerController>().DamageTaken();
         }
 
     }
-    
-   
+
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
     }
     IEnumerator Die()
     {
-       
+
         if (!isDead)
         {
             isDead = true;
             attackRange = 0;
             sightRange = 0;
             this.GetComponent<NavMeshAgent>().enabled = false;
-            changeAnim("isAttacking", false);
-            changeAnim("isChasing", false);
-            changeAnim("isLooking", false);
-            changeAnim("HasDied", true);
+
+            ChangeAnim("isAttacking", false);
+            ChangeAnim("isChasing", false);
+            ChangeAnim("isLooking", false);
+            ChangeAnim("HasDied", true);
+
             particles = Instantiate(particles, transform.position, transform.rotation);
 
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -190,10 +187,10 @@ public class EnemyController : MonoBehaviour
             particles.GetComponent<ParticleSystem>().Stop();
             this.enabled = false;
             Destroy(this.gameObject);
-            
-           
+
+
         }
-        
+
     }
     private void OnDrawGizmosSelected()
     {
@@ -202,5 +199,5 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
-   
+
 }

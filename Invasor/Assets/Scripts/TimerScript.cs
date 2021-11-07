@@ -23,9 +23,6 @@ public class TimerScript : MonoBehaviour
     void Update()
     {
         totalEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-       
-        Debug.Log("Enemy count is : " + totalEnemyCount);
-        Debug.Log(" Enemies all Dead : " + (totalEnemyCount <= 0));
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -33,7 +30,7 @@ public class TimerScript : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-            if(totalEnemyCount <= 0)
+            if (totalEnemyCount <= 0)
             {
                 StartCoroutine(ChangeLevel());
             }
@@ -57,14 +54,13 @@ public class TimerScript : MonoBehaviour
     {
 
         panel.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 0; // freezes scene
         yield return new WaitForSecondsRealtime(5);
-        Time.timeScale = 1;
-        Debug.Log("In Scene");
+        Time.timeScale = 1; // unfreezes scene
         timeRemaining = 0;
         timerIsRunning = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // level 2
 
 
     }
-    }
+}

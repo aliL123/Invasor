@@ -11,7 +11,7 @@ public class TimerScript2 : MonoBehaviour
     public Text timeText;
     public GameObject panel;
     [HideInInspector]
-    public int totalEnemyCount;
+    public int currentEnemyCount;
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class TimerScript2 : MonoBehaviour
 
     void Update()
     {
-        totalEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length; // gets current enemies number by tag
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -30,11 +30,11 @@ public class TimerScript2 : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-            if (totalEnemyCount <= 0)
+            if (currentEnemyCount <= 0) // all enemies dead
             {
                 StartCoroutine(ChangeLevel());
             }
-            else if (timeRemaining <= 0)
+            else if (timeRemaining <= 0) // time ran out
             {
                 StartCoroutine(ChangeLevel());
             }
@@ -54,14 +54,13 @@ public class TimerScript2 : MonoBehaviour
     {
 
         panel.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 0; // freezes scene
         yield return new WaitForSecondsRealtime(5);
-        Time.timeScale = 1;
-        Debug.Log("In Scene");
+        Time.timeScale = 1; // unfreezes scene
         timeRemaining = 0;
         timerIsRunning = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2); // back to main menu
 
 
     }
-    }
+}
