@@ -45,7 +45,7 @@ public class RatingScript : MonoBehaviour
         }
         else
         {
-            ratingText.SetText("Rating : GOD Level Plays");
+            ratingText.SetText("Rating : Crazy Plays");
         }
     }
 }

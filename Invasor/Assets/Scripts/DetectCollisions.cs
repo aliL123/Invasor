@@ -22,7 +22,6 @@ public class DetectCollisions : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(this.gameObject);
-        Debug.Log("New  : " + other.gameObject.tag);
         if(other.tag == "Enemy")
         {
             enemyHit = other.gameObject;

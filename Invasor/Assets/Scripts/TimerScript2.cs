@@ -57,7 +57,6 @@ public class TimerScript2 : MonoBehaviour
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(5);
         Time.timeScale = 1;
-        Debug.Log("In Scene");
         timeRemaining = 0;
         timerIsRunning = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);

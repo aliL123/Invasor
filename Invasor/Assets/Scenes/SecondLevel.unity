@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1f292979466ae7a4587c4c0a18186966, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b1d2f3bcaa6f9064ea8d524488e0a3a0, type: 2}
 --- !u!1001 &9829054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f47a6ed17f7a9842be3f4b496d6315b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 30
+  timeRemaining: 180
   timerIsRunning: 1
   timeText: {fileID: 186240363}
   panel: {fileID: 1696663358}
