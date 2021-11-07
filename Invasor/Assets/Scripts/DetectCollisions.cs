@@ -16,18 +16,19 @@ public class DetectCollisions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(this.gameObject);
-        if (other.tag == "Enemy")
+        Debug.Log("New  : " + other.gameObject.tag);
+        if(other.tag == "Enemy")
         {
             enemyHit = other.gameObject;
             enemyHit.GetComponent<EnemyController>().health -= damage;
-
+            
         }
-
+        
     }
 }

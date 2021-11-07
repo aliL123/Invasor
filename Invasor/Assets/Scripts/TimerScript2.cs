@@ -10,8 +10,11 @@ public class TimerScript2 : MonoBehaviour
     public bool timerIsRunning = false;
     public Text timeText;
     public GameObject panel;
+<<<<<<< HEAD
     [HideInInspector]
     public int currentEnemyCount;
+=======
+>>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
 
     private void Start()
     {
@@ -22,7 +25,10 @@ public class TimerScript2 : MonoBehaviour
 
     void Update()
     {
+<<<<<<< HEAD
         currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length; // gets current enemies number by tag
+=======
+>>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -30,11 +36,15 @@ public class TimerScript2 : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
+<<<<<<< HEAD
             if (currentEnemyCount <= 0) // all enemies dead
             {
                 StartCoroutine(ChangeLevel());
             }
             else if (timeRemaining <= 0) // time ran out
+=======
+            else
+>>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
             {
                 StartCoroutine(ChangeLevel());
             }
