@@ -10,6 +10,8 @@ public class TimerScript : MonoBehaviour
     public bool timerIsRunning = false;
     public Text timeText;
     public GameObject panel;
+    [HideInInspector]
+    public int totalEnemyCount;
 
     private void Start()
     {
@@ -20,6 +22,10 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
+        totalEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+       
+        Debug.Log("Enemy count is : " + totalEnemyCount);
+        Debug.Log(" Enemies all Dead : " + (totalEnemyCount <= 0));
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -27,7 +33,11 @@ public class TimerScript : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-            else
+            if(totalEnemyCount <= 0)
+            {
+                StartCoroutine(ChangeLevel());
+            }
+            else if (timeRemaining <= 0)
             {
                 StartCoroutine(ChangeLevel());
             }
