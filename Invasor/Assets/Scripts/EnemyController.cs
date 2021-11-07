@@ -52,13 +52,12 @@ public class EnemyController : MonoBehaviour
             {
                 changeAnim("isChasing", false);
                 changeAnim("isAttacking", false);
-                Debug.Log("IsPatroling");
+ 
                 Patroling();
             }
             if (playerInSightRange && !playerInAttackRange)
             {
                 changeAnim("isAttacking", false);
-                Debug.Log("IsChasing");
                 Chase();
             }
             if (playerInSightRange && playerInAttackRange)
@@ -68,12 +67,7 @@ public class EnemyController : MonoBehaviour
                 Invoke("AttackAction", 5f);
             }
         }
-        else
-        {
-            // Debug.Log("Is Dead : " + isDead);
-        }
-
-
+     
         if (health <= 0)
         {
             if (!addedScore)
@@ -106,9 +100,10 @@ public class EnemyController : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if (distanceToWalkPoint.magnitude < 0.23f)
         {
+            agent.SetDestination(this.transform.position);
             walkPointSet = false;
             changeAnim("isLooking", true);
-            // Debug.Log("At Destination");
+            
 
         }
     }
@@ -144,7 +139,6 @@ public class EnemyController : MonoBehaviour
         {
             changeAnim("isChasing", false);
             changeAnim("isLooking", false);
-            Debug.Log("Is attacking soon");
             AttackAction();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -155,7 +149,6 @@ public class EnemyController : MonoBehaviour
     private void AttackAction()
     {
         changeAnim("isAttacking", true);
-        Debug.Log("Animation is done : " + !this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"));
         if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("isAttacking"))
         {
             player.GetComponent<PlayerController>().DamageTaken();
