@@ -10,6 +10,8 @@ public class TimerScript : MonoBehaviour
     public bool timerIsRunning = false;
     public Text timeText;
     public GameObject panel;
+    [HideInInspector]
+    public int currentEnemyCount;
 
     private void Start()
     {
@@ -20,10 +22,7 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
-        totalEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-=======
->>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
+        currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -31,15 +30,11 @@ public class TimerScript : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-<<<<<<< HEAD
-            if (totalEnemyCount <= 0)
+            if (currentEnemyCount <= 0) // all enemies dead
             {
                 StartCoroutine(ChangeLevel());
             }
             else if (timeRemaining <= 0)
-=======
-            else
->>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
             {
                 StartCoroutine(ChangeLevel());
             }
@@ -59,12 +54,13 @@ public class TimerScript : MonoBehaviour
     {
 
         panel.SetActive(true);
-        Time.timeScale = 0; // freezes scene
+        Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(5);
-        Time.timeScale = 1; // unfreezes scene
+        Time.timeScale = 1;
+        Debug.Log("In Scene");
         timeRemaining = 0;
         timerIsRunning = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // level 2
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
 
     }

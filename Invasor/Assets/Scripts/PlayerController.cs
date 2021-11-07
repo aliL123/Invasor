@@ -105,11 +105,7 @@ public class PlayerController : MonoBehaviour
     }
     public void DamageTaken()
     {
-<<<<<<< HEAD
         currentHealth = currentHealth - 60;
-=======
-        currentHealth = currentHealth - currentHealth;
->>>>>>> parent of 4ca0706 (Cleaned Up Assets, Added All enemies dead transition)
         healthBar.GetComponent<HealthBarController>().UpdateHealthBar();
     }
     void Shoot()
