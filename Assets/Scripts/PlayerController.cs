@@ -40,10 +40,7 @@ public class PlayerController : MonoBehaviour
             canShoot = false;
             StartCoroutine(ShootDelay());
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DamageTaken();
-        }
+        
         if (currentHealth <= 0)
         {
             StartCoroutine(Die());
