@@ -4,4 +4,6 @@ A top-down shooter game made purely in Unity using C#. All characters and object
 ## Play
 You can try out the game here: https://play.unity.com/mg/other/invasor-i
 
+Feel free to leave a comment and let me know what you think!
+
 
